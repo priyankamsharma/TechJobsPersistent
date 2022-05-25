@@ -7,5 +7,8 @@
 
 --Part 2
 
+-- SELECT Name FROM employers
+-- where Location = "St.Loius";
+
 --Part 3
 
