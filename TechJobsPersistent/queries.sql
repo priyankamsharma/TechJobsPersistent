@@ -1,14 +1,12 @@
 --Part 1
-
--- jobs (Id int AI PK, Name varchar, EmployerId int)
--- employer (Id int AI PK, Name varchar, Location varchar)
--- skills (Id int AI PK, Name varchar, Description varchar)
--- jobskills (JobId int PK, SkillId int PK)
+-- SELECT * FROM techjobs.jobs;
 
 --Part 2
-
--- SELECT Name FROM employers
+-- SELECT Name FROM techjobs.employers
 -- where Location = "St.Loius";
 
 --Part 3
-
+--SELECT Name, Description FROM techjobs.skills
+--JOIN jobskills ON skills.id = jobskills.SkillId
+--WHERE jobskills.jobid IS NOT NULL
+--ORDER BY skills.name ASC;

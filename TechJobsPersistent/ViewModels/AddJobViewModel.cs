@@ -12,28 +12,31 @@ namespace TechJobsPersistent.ViewModels
         [Required(ErrorMessage = "Job Name is required")]
         public string Name { get; set; }
 
-        //[Required(ErrorMessage = "Employer ID is required")]
+        [Required]
         public int EmployerId { get; set; }
-
-        //public Job Job { get; set; }
 
         public List<SelectListItem> Employers { get; set; }
 
-        //public AddJobViewModel(List<Employer> possibleEmployers)
-        //{
-        //    Employers = new List<SelectListItem>();
+        public List<Skill> Skills { get; set; }
 
-        //    foreach (var employer in possibleEmployers)
-        //    {
-        //        Employers.Add(new SelectListItem
-        //        {
-        //            Value = employer.Id.ToString(),
-        //            Text = employer.Name
-        //        });
-        //    }
+        public List<int> SkillId { get; set; }
 
-        //    Job = theJob;
-        //}
+        public AddJobViewModel(List<Employer> possibleEmployers, List<Skill> possibleSkills)
+        {
+            Skills = possibleSkills;
+
+            Employers = new List<SelectListItem>();
+
+            foreach (var emp in possibleEmployers)
+            {
+
+                Employers.Add(new SelectListItem
+                {
+                    Value = emp.Id.ToString(),
+                    Text = emp.Name
+                });
+            }
+        }
 
         public AddJobViewModel()
         {

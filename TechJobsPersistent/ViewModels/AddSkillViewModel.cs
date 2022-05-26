@@ -2,14 +2,14 @@
 
 namespace TechJobsPersistent.ViewModels
 {
-    public class AddEmployerViewModel
+    public class AddSkillViewModel
     {
         [Required]
         public string Name { get; set; }
-
         [Required]
-        public string Location { get; set; }
-        public AddEmployerViewModel()
+        public string Description { get; set; }
+
+        public AddSkillViewModel()
         {
         }
     }

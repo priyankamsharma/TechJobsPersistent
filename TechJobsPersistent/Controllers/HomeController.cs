@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -32,28 +32,42 @@ namespace TechJobsPersistent.Controllers
         [HttpGet("/Add")]
         public IActionResult AddJob()
         {
-            // Job theJob = new Job();
-            AddJobViewModel addJobViewModel = new AddJobViewModel();
+            AddJobViewModel addJobViewModel = new AddJobViewModel(context.Employers.ToList(), context.Skills.ToList());
             return View(addJobViewModel);
         }
 
-        public IActionResult ProcessAddJobForm(AddJobViewModel addJobViewModel)
+        [HttpPost]
+        public IActionResult ProcessAddJobForm(AddJobViewModel addJobViewModel, string[] selectedSkills)
         {
             if (ModelState.IsValid)
             {
                 Job job = new Job
                 {
                     Name = addJobViewModel.Name,
+                    Employer = context.Employers.Find(addJobViewModel.EmployerId),
                     EmployerId = addJobViewModel.EmployerId
                 };
 
+                for (int i = 0; i < selectedSkills.Length; i++)
+                {
+                    JobSkill jobSkill = new JobSkill
+                    {
+                        JobId = job.Id,
+                        Job = job,
+                        SkillId = int.Parse(selectedSkills[i])
+                    };
+                    context.JobSkills.Add(jobSkill);
+                }
+
                 context.Jobs.Add(job);
                 context.SaveChanges();
-                return Redirect("/Jobs/");
+                return Redirect("Index");
             }
 
             return View("Add", addJobViewModel);
+
         }
+
 
         public IActionResult Detail(int id)
         {
