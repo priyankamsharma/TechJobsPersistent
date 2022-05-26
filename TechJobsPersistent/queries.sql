@@ -6,7 +6,6 @@
 -- where Location = "St.Loius";
 
 --Part 3
---SELECT Name, Description FROM techjobs.skills
+--SELECT * FROM techjobs.skills
 --JOIN jobskills ON skills.id = jobskills.SkillId
---WHERE jobskills.jobid IS NOT NULL
---ORDER BY skills.name ASC;
+--WHERE jobskills.jobid IS NOT NULL;
